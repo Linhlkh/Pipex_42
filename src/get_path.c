@@ -6,7 +6,7 @@
 /*   By: khle <khle@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 22:17:51 by khle              #+#    #+#             */
-/*   Updated: 2023/03/05 23:48:19 by khle             ###   ########.fr       */
+/*   Updated: 2023/03/07 04:31:48 by khle             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**get_paths(char **envp)
 
 	i = 0;
 	len = 0;
-	if (!envp[0])
+	if (!envp || !envp[0])
 		return (NULL);
 	while (envp[len])
 		len++;

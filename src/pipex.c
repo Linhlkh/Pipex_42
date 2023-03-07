@@ -6,7 +6,7 @@
 /*   By: khle <khle@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 22:17:55 by khle              #+#    #+#             */
-/*   Updated: 2023/03/06 06:08:42 by khle             ###   ########.fr       */
+/*   Updated: 2023/03/07 04:32:53 by khle             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,14 @@ int	main(int argc, char **argv, char **envp)
 		err_des("fork1");
 	if (pi_fork1 == 0)
 		child_process(argv, envp, pipefd, fd);
+	if (pi_fork1 > 0)
+		close(pipefd[1]);
 	pi_fork2 = fork();
 	if (pi_fork2 < 0)
 		err_des("fork2");
 	if (pi_fork2 == 0)
 		parent_process(argv, envp, pipefd, fd);
-	close(pipefd[1]);
-	close(pipefd[0]);
+	if (pi_fork2 > 0)
+		close(pipefd[0]);
 	return (0);
 }
